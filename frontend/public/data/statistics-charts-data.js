@@ -5,7 +5,7 @@ const websiteViewsChart = {
   height: 220,
   series: [
     {
-      name: "Views",
+      name: "Layoffs",
       data: [50, 20, 10, 22, 50, 10, 40],
     },
   ],
@@ -30,7 +30,7 @@ const dailySalesChart = {
   height: 220,
   series: [
     {
-      name: "Sales",
+      name: "Layoffs",
       data: [50, 40, 300, 320, 500, 350, 200, 230, 500],
     },
   ],
@@ -65,7 +65,7 @@ const completedTaskChart = {
   height: 220,
   series: [
     {
-      name: "Sales",
+      name: "Layoffs",
       data: [50, 40, 300, 320, 500, 350, 200, 230, 500],
     },
   ],
@@ -98,7 +98,7 @@ const completedTasksChart = {
   ...completedTaskChart,
   series: [
     {
-      name: "Tasks",
+      name: "Hiring",
       data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
     },
   ],
