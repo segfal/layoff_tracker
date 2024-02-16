@@ -1,18 +1,16 @@
+import { Routes, Route, Navigate } from "react-router-dom";
+import { Dashboard, Auth } from "@/layouts";
+import LandingPage from "@/pages/LandingPage.jsx"
 
-import React from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import LandingPage from './pages/LandingPage'
 function App() {
- 
-
   return (
-    <Router>
-      <Routes>
-        <Route path = "/" element = {<LandingPage/>} />
-      </Routes>
-    </Router>
-    
-  )
+    <Routes>
+      <Route path = "/" element = {<LandingPage/>} />
+      <Route path="/dashboard/*" element={<Dashboard />} />
+      <Route path="/auth/*" element={<Auth />} /> 
+      <Route path="*" element={<Navigate to="/dashboard/home" replace />} />
+    </Routes>
+  );
 }
 
-export default App
+export default App;
