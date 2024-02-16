@@ -20,7 +20,7 @@ const websiteViewsChart = {
     },
     xaxis: {
       ...chartsConfig.xaxis,
-      categories: ["M", "T", "W", "T", "F", "S", "S"],
+      categories: ["Q1","Q2","Q3","Q4","Q1","Q2","Q3"],
     },
   },
 };
@@ -107,23 +107,23 @@ const completedTasksChart = {
 export const statisticsChartsData = [
   {
     color: "white",
-    title: "Website View",
-    description: "Last Campaign Performance",
-    footer: "campaign sent 2 days ago",
+    title: "Quaterly Layoffs",
+    description: "",
+    footer: "A bar graph for Quaterly Layoffs",
     chart: websiteViewsChart,
   },
   {
     color: "white",
-    title: "Daily Sales",
-    description: "15% increase in today sales",
-    footer: "updated 4 min ago",
+    title: "Monthly Layoffs",
+    description: "15% increase in this month's layoffs",
+    footer: "A Line Graph for Monthly Layoffs",
     chart: dailySalesChart,
   },
   {
     color: "white",
-    title: "Completed Tasks",
-    description: "Last Campaign Performance",
-    footer: "just updated",
+    title: "Monthly Hiring",
+    description: "2% increase in this month's hiring",
+    footer: "A Line Graph for Monthly Hiring",
     chart: completedTasksChart,
   },
 ];
