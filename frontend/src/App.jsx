@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import { Dashboard, Auth } from "@/layouts";
+import { Dashboard} from "@/layouts";
 import LandingPage from "@/pages/LandingPage.jsx"
 
 function App() {
@@ -7,7 +7,6 @@ function App() {
     <Routes>
       <Route path = "/" element = {<LandingPage/>} />
       <Route path="/dashboard/*" element={<Dashboard />} />
-      <Route path="/auth/*" element={<Auth />} /> 
       <Route path="*" element={<Navigate to="/dashboard/home" replace />} />
     </Routes>
   );
