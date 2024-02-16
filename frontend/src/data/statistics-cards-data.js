@@ -37,7 +37,7 @@ export const statisticsCardsData = [
     footer: {
       color: "text-green-500",
       value: "+2%",
-      label: "than Quater",
+      label: "than last Quater",
     },
   },
   {
