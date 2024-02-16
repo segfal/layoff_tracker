@@ -165,13 +165,7 @@ export function DashboardNavbar() {
               </MenuItem>
             </MenuList>
           </Menu>
-          <IconButton
-            variant="text"
-            color="blue-gray"
-            onClick={() => setOpenConfigurator(dispatch, true)}
-          >
-            <Cog6ToothIcon className="h-5 w-5 text-blue-gray-500" />
-          </IconButton>
+
         </div>
       </div>
     </Navbar>

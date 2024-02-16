@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import { Dashboard} from "@/layouts";
+import { Dashboard } from "@/layouts";
 import LandingPage from "@/pages/LandingPage.jsx"
 
 function App() {
