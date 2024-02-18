@@ -6,19 +6,17 @@ import MediaCard from "../components/MediaCard";
 
 const NewsPage = () => {
   const [articles, setArticles] = useState([]);
-  // ... fetch articles with axios ...
+  const apiKey1 = import.meta.env.VITE_API_KEY; // It's best to keep this secret!
   useEffect(() => {
-    const apiKey = "c2fef881efcc45f385eb8005e3341d8c"; // It's best to keep this secret!
     const baseUrl = "https://newsapi.org/v2/everything";
     const query = "Company layoff";
-
     axios
-      .get(`${baseUrl}?q=${encodeURIComponent(query)}&apiKey=${apiKey}`)
+      .get(`${baseUrl}?q=${encodeURIComponent(query)}&apiKey=${apiKey1}`)
       .then((response) => {
         setArticles(response.data.articles);
       })
       .catch((error) => {
-        setError(error);
+        console.log(error);
       });
   }, []);
 
