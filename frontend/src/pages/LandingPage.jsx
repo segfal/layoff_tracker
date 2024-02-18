@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 function LandingPage() {
   const navigate = useNavigate()
   const handleLogin = async () => {
-    navigate('/dashboard')
+    navigate('/dashboard/home')
   };
 
   return (
