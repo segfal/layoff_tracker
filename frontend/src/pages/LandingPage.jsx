@@ -5,11 +5,13 @@ import comparsion from "../images/comparisons.webp"
 import layoff from "../images/layoff.webp"
 import layoffs from "../images/1.png"
 import Features from "../components/Features";
+import { useNavigate } from "react-router-dom";
 
 
 function LandingPage() {
+  const navigate = useNavigate()
   const handleLogin = async () => {
-    
+    navigate('/dashboard')
   };
 
   return (
