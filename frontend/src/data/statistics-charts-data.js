@@ -104,6 +104,31 @@ const completedTasksChart = {
   ],
 };
 
+const companyLayoffChart = {
+  type: "bar",
+  height: 220,
+  series: [
+    {
+      name: "Layoffs",
+      data: [50, 20, 10, 22, 50, 10, 40],
+    },
+  ],
+  options: {
+    ...chartsConfig,
+    colors: "#ff0000",
+    plotOptions: {
+      bar: {
+        columnWidth: "16%",
+        borderRadius: 5,
+      },
+    },
+    xaxis: {
+      ...chartsConfig.xaxis,
+      categories: ["Google","Apple","Meta","Amazon","Discord","CitiGroup","Unity"],
+    },
+  },
+};
+
 export const statisticsChartsData = [
   {
     color: "white",
@@ -125,6 +150,13 @@ export const statisticsChartsData = [
     description: "2% increase in this month's hiring",
     footer: "A Line Graph for Monthly Hiring",
     chart: completedTasksChart,
+  },
+  {
+    color: "white",
+    title: "Layoffs per Company",
+    description: "",
+    footer: "A Bar Graph for per Company Layoffs",
+    chart: companyLayoffChart,
   },
 ];
 
