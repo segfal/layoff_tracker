@@ -13,7 +13,7 @@ import TypingEffect from "../components/TypingEffect";
 const NewsPage = () => {
   const [articles, setArticles] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const articlesPerPage = 3;
+  const articlesPerPage = 6;
   const navigate = useNavigate();
 
   const handleLogin = async () => {
@@ -89,21 +89,20 @@ const NewsPage = () => {
           <div className="flex items-center h-80">
             <div
               style={{
-                color: "#2E4764",
-                fontSize: "1.5rem",
-                fontWeight: "",
+                color: "black",
+                fontSize: "1.25rem",
+                fontWeight: "bold",
+                fontFamily: "New Times Roman",
               }}
             >
               <TypingEffect
                 strings={[
-                  "Welcome to LayOff Insight...",
-                  "Navigate Through Layoffs With Confidence...",
                   "The tech industry is facing a wave of layoffs as companies reevaluate their growth and scalability strategies amidst economic shifts. Layoff Insights brings you the latest news, data-driven articles, and expert analyses to help you understand the dynamics of the job market. Stay informed with up-to-date reports on which tech giants are downsizing, what this means for the industry's future, and how you can navigate these changes.",
                 ]}
               />
             </div>
           </div>
-          {/* <div className="space-x-10">
+          <div className="space-x-10">
             <button
               onClick={handleLogin}
               className="h-16 w-48 font-bold text-xl text-white rounded-lg"
@@ -114,22 +113,27 @@ const NewsPage = () => {
             <span className="text-xl font-bold" style={{ color: "#2E4764" }}>
               Learn More
             </span>
-          </div> */}
+          </div>
         </div>
         <img src={fired} alt="Layoff Trends" className="w-1/3"></img>
       </section>
 
       <section className="pb-11">
         {/* Grid container centered with equal spacing on each side */}
-        <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center' }}>
-        <Grid container spacing={gridSpacing} justifyContent="center" style={{ maxWidth: 1200, margin: 'auto' }}>
-          {currentArticles.map((article, index) => (
-            <Grid item key={index} xs={12} sm={6} md={4}>
-              <MediaCard article={article} />
-            </Grid>
-          ))}
-        </Grid>
-      </Box>
+        <Box sx={{ flexGrow: 1, display: "flex", justifyContent: "center" }}>
+          <Grid
+            container
+            spacing={gridSpacing}
+            justifyContent="center"
+            style={{ maxWidth: 1200, margin: "auto" }}
+          >
+            {currentArticles.map((article, index) => (
+              <Grid item key={index} xs={12} sm={6} md={4}>
+                <MediaCard article={article} />
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
 
         {/* Pagination */}
         <Box sx={styles.paginationContainer}>
@@ -147,11 +151,11 @@ const NewsPage = () => {
       <footer className="pb-4">
         <div className="flex justify-between ml-24 mr-24 pb-18 mt-10">
           <div className="ml-8 flex mr-5 pr-10">
-            <p className="text-4xl font-bold" style={{ color: "#2E4764" }}>
-              LayOff Insight
-            </p>
+            <p className="text-4xl font-bold" style={{ color: "#2E4764" }}>LayOff Insight</p>
           </div>
         </div>
+        <hr className="ml-32 mr-24 mt-8" style={{ borderColor: "#2E4764" }}></hr>
+        <p className="ml-32 mt-5" style={{ color: "#2E4764" }}>© 2023 LayOff Insight — Navigating Through Layoffs</p>
       </footer>
     </div>
   );
