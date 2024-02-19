@@ -7,8 +7,8 @@ import MediaCard from "../components/MediaCard";
 import Pagination from "@mui/material/Pagination";
 import Box from "@mui/material/Box";
 import layoffs from "../images/1.png";
-import fired from "../images/fired.jpeg"
-
+import fired from "../images/fired.jpeg";
+import TypingEffect from "../components/TypingEffect";
 
 const NewsPage = () => {
   const [articles, setArticles] = useState([]);
@@ -77,31 +77,33 @@ const NewsPage = () => {
     },
   };
 
+  const gridSpacing = 3;
+
   return (
-    <div
-      className="flex flex-col h-screen"
-      style={{ backgroundColor: "white" }}
-    >
+    <div className="flex flex-col" style={{ backgroundColor: "white" }}>
       <section
         className="flex justify-evenly pb-5"
         style={{ borderBottom: "5px solid white" }}
       >
         <div className="h-full w-1/2">
           <div className="flex items-center h-80">
-            <div>
-              <p className="text-4xl font-bold" style={{ color: "#2E4764" }}>
-                Welcome to LayOff Insight
-              </p>
-              <p className="text-4xl font-bold" style={{ color: "#2E4764" }}>
-                Navigate Through Layoffs With Confidence
-              </p>
-              <p className="mt-5" style={{ color: "#2E4764" }}>
-                Gain insights into layoff trends, compare company strategies,
-                and access resources to help you through the transition.
-              </p>
+            <div
+              style={{
+                color: "#2E4764",
+                fontSize: "1.5rem",
+                fontWeight: "",
+              }}
+            >
+              <TypingEffect
+                strings={[
+                  "Welcome to LayOff Insight...",
+                  "Navigate Through Layoffs With Confidence...",
+                  "The tech industry is facing a wave of layoffs as companies reevaluate their growth and scalability strategies amidst economic shifts. Layoff Insights brings you the latest news, data-driven articles, and expert analyses to help you understand the dynamics of the job market. Stay informed with up-to-date reports on which tech giants are downsizing, what this means for the industry's future, and how you can navigate these changes.",
+                ]}
+              />
             </div>
           </div>
-          <div className="space-x-10">
+          {/* <div className="space-x-10">
             <button
               onClick={handleLogin}
               className="h-16 w-48 font-bold text-xl text-white rounded-lg"
@@ -112,23 +114,24 @@ const NewsPage = () => {
             <span className="text-xl font-bold" style={{ color: "#2E4764" }}>
               Learn More
             </span>
-          </div>
+          </div> */}
         </div>
         <img src={fired} alt="Layoff Trends" className="w-1/3"></img>
       </section>
 
       <section className="pb-11">
-        <p className="text-4xl font-bold text-white mt-10 text-center">
-          Key Features
-        </p>
-        <Grid container spacing={3}>
+        {/* Grid container centered with equal spacing on each side */}
+        <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center' }}>
+        <Grid container spacing={gridSpacing} justifyContent="center" style={{ maxWidth: 1200, margin: 'auto' }}>
           {currentArticles.map((article, index) => (
             <Grid item key={index} xs={12} sm={6} md={4}>
               <MediaCard article={article} />
             </Grid>
           ))}
         </Grid>
+      </Box>
 
+        {/* Pagination */}
         <Box sx={styles.paginationContainer}>
           <Pagination
             count={Math.ceil(articles.length / articlesPerPage)}
