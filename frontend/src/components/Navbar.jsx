@@ -54,11 +54,11 @@ const Navbar = () => {
         </li>
         <li className="px-2 md:px-4">
           <a
-            href="#"
+            href="/dashboard/home"
             className="text-gray-500 font-semibold"  style={{ color: "black" }}
           >
             {" "}
-            Contact{" "}
+            Dashboard{" "}
           </a>
         </li>
       </ul>
