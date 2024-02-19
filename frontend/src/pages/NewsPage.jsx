@@ -102,18 +102,27 @@ const NewsPage = () => {
               />
             </div>
           </div>
-          <div className="space-x-10">
-            <button
-              onClick={handleLogin}
-              className="h-16 w-48 font-bold text-xl text-white rounded-lg"
-              style={{ backgroundColor: "#36454F" }}
-            >
-              View Trends
-            </button>
-            <span className="text-xl font-bold" style={{ color: "#2E4764" }}>
-              Learn More
-            </span>
-          </div>
+          <div style={{
+        display: 'flex',
+        justifyContent: 'center', // This will center the buttons container
+        alignItems: 'center',
+        gap: '10px', // This adds space between the buttons
+        marginBottom: '20px' // Adds some space below the buttons before the articles start
+      }}>
+        <button
+          onClick={handleLogin}
+          className="h-16 w-48 font-bold text-xl text-white rounded-lg"
+          style={{ backgroundColor: "#36454F" }}
+        >
+          View Trends
+        </button>
+        <button
+          className="h-16 w-48 font-bold text-xl text-white rounded-lg"
+          style={{ backgroundColor: "#36454F" }}
+        >
+          Learn More
+        </button>
+      </div>
         </div>
         <img src={fired} alt="Layoff Trends" className="w-1/3"></img>
       </section>
