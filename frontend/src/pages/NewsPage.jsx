@@ -6,9 +6,9 @@ import Typography from "@mui/material/Typography";
 import MediaCard from "../components/MediaCard";
 import Pagination from "@mui/material/Pagination";
 import Box from "@mui/material/Box";
-import layoffs from "../images/1.png";
 import fired from "../images/fired.jpeg";
 import TypingEffect from "../components/TypingEffect";
+import { Button } from "@mui/material";
 
 const NewsPage = () => {
   const [articles, setArticles] = useState([]);
@@ -89,7 +89,7 @@ const NewsPage = () => {
           <div className="flex items-center h-80">
             <div
               style={{
-                color: "black",
+                color: "#36454F",
                 fontSize: "1.25rem",
                 fontWeight: "bold",
                 fontFamily: "New Times Roman",
@@ -102,27 +102,56 @@ const NewsPage = () => {
               />
             </div>
           </div>
-          <div style={{
-        display: 'flex',
-        justifyContent: 'center', // This will center the buttons container
-        alignItems: 'center',
-        gap: '10px', // This adds space between the buttons
-        marginBottom: '20px' // Adds some space below the buttons before the articles start
-      }}>
-        <button
-          onClick={handleLogin}
-          className="h-16 w-48 font-bold text-xl text-white rounded-lg"
-          style={{ backgroundColor: "#36454F" }}
-        >
-          View Trends
-        </button>
-        <button
-          className="h-16 w-48 font-bold text-xl text-white rounded-lg"
-          style={{ backgroundColor: "#36454F" }}
-        >
-          Learn More
-        </button>
-      </div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center", // This will center the buttons container
+              alignItems: "center",
+              gap: "10px", // This adds space between the buttons
+              marginBottom: "20px", // Adds some space below the buttons before the articles start
+            }}
+          >
+            <Button
+              variant="outlined"
+              onClick={handleLogin}
+              sx={{
+                height: "64px", // equivalent to h-16 in TailwindCSS
+                width: "192px", // equivalent to w-48 in TailwindCSS
+                fontWeight: "bold",
+                fontSize: "1rem", // equivalent to text-xl in TailwindCSS
+                color: "#36454F",
+                borderColor: "#36454F", // Border color
+                "&:hover": {
+                  borderColor: "#36454F", // Border color on hover
+                  backgroundColor: "transparent", // Ensure the background stays transparent on hover
+                },
+                borderRadius: "0.375rem", // equivalent to rounded-lg in TailwindCSS
+              }}
+              //   style={{ backgroundColor: "#36454F" }}
+            >
+              View Trends
+            </Button>
+            <Button
+              variant="outlined"
+              onClick={handleLogin}
+              sx={{
+                height: "64px", // equivalent to h-16 in TailwindCSS
+                width: "192px", // equivalent to w-48 in TailwindCSS
+                fontWeight: "bold",
+                fontSize: "1rem", // equivalent to text-xl in TailwindCSS
+                color: "white",
+                borderColor: "#36454F", // Border color
+                backgroundColor: "#36454F",
+                "&:hover": {
+                  borderColor: "#36454F", // Border color on hover
+                  backgroundColor: "#36454F", // Ensure the background stays transparent on hover
+                },
+                borderRadius: "0.375rem", // equivalent to rounded-lg in TailwindCSS
+              }}
+            >
+              Learn More
+            </Button>
+          </div>
         </div>
         <img src={fired} alt="Layoff Trends" className="w-1/3"></img>
       </section>
@@ -160,11 +189,18 @@ const NewsPage = () => {
       <footer className="pb-4">
         <div className="flex justify-between ml-24 mr-24 pb-18 mt-10">
           <div className="ml-8 flex mr-5 pr-10">
-            <p className="text-4xl font-bold" style={{ color: "#2E4764" }}>LayOff Insight</p>
+            <p className="text-4xl font-bold" style={{ color: "#2E4764" }}>
+              LayOff Insight
+            </p>
           </div>
         </div>
-        <hr className="ml-32 mr-24 mt-8" style={{ borderColor: "#2E4764" }}></hr>
-        <p className="ml-32 mt-5" style={{ color: "#2E4764" }}>© 2023 LayOff Insight — Navigating Through Layoffs</p>
+        <hr
+          className="ml-32 mr-24 mt-8"
+          style={{ borderColor: "#2E4764" }}
+        ></hr>
+        <p className="ml-32 mt-5" style={{ color: "#2E4764" }}>
+          © 2023 LayOff Insight — Navigating Through Layoffs
+        </p>
       </footer>
     </div>
   );
