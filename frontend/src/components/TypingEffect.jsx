@@ -1,5 +1,5 @@
 import Typed from 'typed.js'
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useRef} from 'react'
 
 const TypingEffect = ({ strings }) => {
     const el = useRef(null);
