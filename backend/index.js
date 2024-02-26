@@ -10,7 +10,7 @@ app.get("/", async (req, res) => {
     auth: process.env.GOOGLE_API_KEY,
   });
 
-  const spreadsheetId = "1V0JlissjAe-wDHbxeEhhIGxXXd3PXhE27QlKwhkpfQM";
+  const spreadsheetId = process.env.SPREADSHEET_ID;
 
   const response = await googleSheets.spreadsheets.values.get({
     spreadsheetId,
