@@ -1,7 +1,7 @@
 require("dotenv").config();
 const { google } = require("googleapis");
 
-async function getSpreadSheet() {
+async function getSpreadSheet(page = 1) {
   try {
     const googleSheets = google.sheets({
       version: "v4",
@@ -12,7 +12,7 @@ async function getSpreadSheet() {
 
     const response = await googleSheets.spreadsheets.values.get({
       spreadsheetId,
-      range: "Sheet1",
+      range: `Sheet1!A${(page - 1) * 500 + 1}:Z${page * 500}`,
     });
 
     console.log("Sheet1: ", response.data.values[0]);
@@ -25,4 +25,27 @@ async function getSpreadSheet() {
   }
 }
 
-module.exports = getSpreadSheet;
+async function getTotalRecordCountSpreadSheet() {
+  try {
+    const googleSheets = google.sheets({
+      version: "v4",
+      auth: process.env.GOOGLE_API_KEY,
+    });
+
+    const spreadsheetId = process.env.SPREADSHEET_ID;
+
+    const response = await googleSheets.spreadsheets.get({
+      spreadsheetId,
+    });
+
+    let totalCount = response.data.sheets[0].properties.gridProperties.rowCount;
+
+    const pageSize = 500;
+
+    return totalCount / pageSize;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+module.exports = { getSpreadSheet, getTotalRecordCountSpreadSheet };

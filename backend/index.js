@@ -1,14 +1,21 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
-const { google } = require("googleapis");
 const port = process.env.PORT || 8080;
-const getSpreadSheet = require("./spreadsheet");
+const {
+  getSpreadSheet,
+  getTotalRecordCountSpreadSheet,
+} = require("./spreadsheet");
 
 app.get("/", async (req, res) => {
   const values = await getSpreadSheet();
 
   res.send(values);
+});
+app.get("/record-count", async (req, res) => {
+  const pages = await getTotalRecordCountSpreadSheet();
+
+  res.status(200).json(pages);
 });
 
 app.listen(port, (req, res) => {
