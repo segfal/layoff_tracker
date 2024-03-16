@@ -12,6 +12,13 @@ app.get("/", async (req, res) => {
 
   res.send(values);
 });
+
+app.get("/:page", async (req, res) => {
+  const values = await getSpreadSheet(req.params.page);
+
+  res.send(values);
+});
+
 app.get("/record-count", async (req, res) => {
   const pages = await getTotalRecordCountSpreadSheet();
 
