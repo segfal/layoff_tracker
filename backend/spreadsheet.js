@@ -1,5 +1,5 @@
 require("dotenv").config();
-const { google } = require("googleapis");
+const { google, compute_alpha } = require("googleapis");
 
 async function getSpreadSheet(page = 1) {
   try {
@@ -19,7 +19,18 @@ async function getSpreadSheet(page = 1) {
 
     const values = response.data.values;
 
-    return values;
+    const companies = {};
+
+    for (let i = 1; i < values.length; i++) {
+      const record = values[i];
+      if (record[1] in companies) {
+        companies[record[1]].push(record);
+      } else {
+        companies[record[1]] = [record];
+      }
+    }
+
+    return companies;
   } catch (error) {
     console.log(error);
   }
