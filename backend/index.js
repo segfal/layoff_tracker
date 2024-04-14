@@ -13,6 +13,9 @@ app.get("/", async (req, res) => {
   res.send(values);
 });
 
+
+
+
 app.get("/:page", async (req, res) => {
   const values = await getSpreadSheet(req.params.page);
 
@@ -24,6 +27,9 @@ app.get("/record-count", async (req, res) => {
 
   res.status(200).json(pages);
 });
+
+
+
 
 app.listen(port, (req, res) => {
   console.log(`Running on Port: ${port}`);
