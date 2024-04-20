@@ -1,5 +1,5 @@
 require("dotenv").config();
-const { google, compute_alpha } = require("googleapis");
+const { google } = require("googleapis");
 
 const googleSheets = google.sheets({
   version: "v4",
@@ -97,9 +97,75 @@ async function getStates() {
   return states;
 }
 
+async function getLayoffByDate(page = 1, from, to) {
+  const spreadsheet = await getSpreadSheet(page);
+  const values = spreadsheet.values;
+
+  const fromDate = new Date(formatDateString(from)).getTime();
+  const toDate = new Date(formatDateString(to)).getTime();
+
+  const layoffbyDate = [];
+
+  for (let i = 1; i < values.length; i++) {
+    const record = values[i];
+    const warnDate = record[4].split("/").join("-");
+    const date = new Date(formatDateString(warnDate)).getTime();
+
+    if (date >= fromDate && date <= toDate) {
+      layoffbyDate.push(record);
+    }
+  }
+  return layoffbyDate;
+}
+
+function formatDateString(date) {
+  let dateString = date.split("-");
+  return `${dateString[2]}-${dateString[0]}-${dateString[1]}`;
+}
+
+async function getByLayoffType(page, type) {
+  const spreadsheet = await getSpreadSheet(page);
+  const values = spreadsheet.values;
+  const layoffs = [];
+
+  const types = {
+    layoff: {
+      "Layoff Permanent": true,
+      "Permanent Layoff": true,
+      "Layoff Temporary": true,
+      "Permanent Layoff /Reduction in Force": true,
+      Layoff: true,
+      "Mass Layoff - No Recall": true,
+    },
+    closing: {
+      "Permanent Closure": true,
+      "Closure Permanent": true,
+      Closing: true,
+      "Plant Closure": true,
+      "Facility closure": true,
+      "Facility Closure, Workforce Reduction": true,
+    },
+    reduction: {
+      "Workforce Reduction": true,
+      "Permanent Layoff /Reduction in Force": true,
+      "Facility Closure, Workforce Reduction": true,
+    },
+  };
+
+  for (let i = 1; i < values.length; i++) {
+    const record = values[i];
+    if (types[type.toLowerCase()][record[6]]) {
+      layoffs.push(record);
+    }
+  }
+  return layoffs;
+}
+
 module.exports = {
   getAllLayoff,
   getTotalRecordCountSpreadSheet,
   getLayoffByState,
   getStates,
+  getLayoffByDate,
+  getByLayoffType,
 };

@@ -7,6 +7,8 @@ const {
   getTotalRecordCountSpreadSheet,
   getLayoffByState,
   getStates,
+  getLayoffByDate,
+  getByLayoffType,
 } = require("./spreadsheet");
 require("dotenv");
 
@@ -39,6 +41,21 @@ app.get("/state", async (req, res) => {
   const states = await getStates();
   res.status(200).send(states);
 });
+
+app.get("/date/:from/:to/:page", async (req, res) => {
+  const { from, to, page } = req.params;
+
+  const layoffbyDate = await getLayoffByDate(page, from, to);
+  res.status(200).send(layoffbyDate);
+});
+
+app.get("/type/:type/:page", async (req, res) => {
+  const { page, type } = req.params;
+  const laidoffByTypes = await getByLayoffType(page, type);
+
+  res.status(200).send(laidoffByTypes);
+});
+
 app.listen(port, () => {
   console.log(`Running on Port: ${port}`);
 });
