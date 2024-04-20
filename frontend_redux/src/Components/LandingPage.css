@@ -1,22 +1,104 @@
 
 body,html {
-    height:100%;
-    margin:0;
-    overflow-x: 0;
-    background-color: black;
+    
+  margin:0;
+  overflow-x: 0;
+ 
+
+}
   
-  }
-  
-  .app{
+.app{
     align-items: center;
     justify-content: center;
     text-align: center;
+    
+  }
+
+.container{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+  
+.container button{
+  font-size: 1.5rem;
+  padding: 10px 20px;
+  border: none;
+  background-color: rgba(0,0,0,0.5);
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+  
+.container button:hover{
+    background-color: rgb(255, 255, 255);
+    color: black;
+    border-radius: 30px;
+
+  }
+
+
+.container .card{
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px;
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* old css code */
+  
+  
+.section{
+    height: 100vh; /* Set the height to fill the entire viewport */
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  
   }
   
-  
-  /*Parallax magic happens here */
-  .parallax-container{
-    height: 100vh;
+.parallax-container{
+    width: 100vw; /* Set the width to fill the entire viewport width */
+    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -28,30 +110,19 @@ body,html {
     font-weight: bold;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
   }
-  
-  
-  
-  /*
-  each section will have a different background image
-  We will need to find a way to add multiple background images to the same section
-  */
-  .section{
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2rem;
-    font-weight: bold;
-    color: white;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-  }
 
-  .section .container{
+
+
+.section .container{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-  }
+}
+
+
+
+
 
   /* section button */
   .section button{
@@ -63,7 +134,8 @@ body,html {
     cursor: pointer;
     transition: 0.3s;
   }
-  
+
+
   
   /*First Background image*/
   .bg1{
@@ -81,3 +153,5 @@ body,html {
   .bg3{
     background-image: url('https://images.unsplash.com/photo-1517849845537-4d257902454a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80');
   }
+
+

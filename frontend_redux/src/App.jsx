@@ -1,15 +1,15 @@
 import React from "react";
 import LandingPage from "./Components/LandingPage";
 import Dashboard from "./Components/Dashboard";
-
+import NewsFeed from "./Components/NewsFeed";
 
 const App = () => {
   return(
     <div>
-      <Dashboard />
-
+      {/* <LandingPage/> */}
+      {/* <Dashboard/> */}
+      <NewsFeed/>
       
-
 
     </div>
 
