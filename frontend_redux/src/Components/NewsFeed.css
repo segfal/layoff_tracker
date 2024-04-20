@@ -29,59 +29,33 @@ h2 {
 }
 
 .container {
-    width: 100%;
-    max-width: 1200px;
-    margin: auto; /* Simplified for centering */
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Added auto-fill to make the cards responsive */
-    grid-gap: 100px;
+    display: flex;
     flex-wrap: wrap;
-    justify-content: center; /* Ensures that cards are centered horizontally */
-    align-items: center;
-    
-
+    justify-content: space-between;
 }
 
 .card {
-    background-color: #424549;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 3rem;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: start;
     align-items: center;
-    color: aliceblue;
-    margin: 10px; /* Added margin between cards */
-}
-
-.card h1 {
-    font-size: 2rem;
+    width: 50%;
     margin-bottom: 1rem;
 }
 
-
-
-hr {
-    width: 100%;
-    border: 1px solid #424549;
-    margin: 1rem 0;
+.card img {
+    height: 150px;
+    width: 160px;
+    border-radius: 15%;
+    margin-right: 1rem;
 }
 
-.card p {
-    font-size: 1.2rem;
-    text-align: center;
+.card-content {
+    display: flex;
+    flex-grow: 1;
+    align-items: start;
+    flex-direction: column;
 }
-
-.card button {
-    background-color: #f1c40f;
-    color: #424549;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 1rem;
-}
-
 /*make the search bar ontop of the button*/
 
 .search-bar {
