@@ -6,7 +6,7 @@ import Dashboard from "./Components/Dashboard";
 const App = () => {
   return(
     <div>
-      <Dashboard />
+      <LandingPage/>
 
       
 
