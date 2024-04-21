@@ -6,9 +6,9 @@ import NewsFeed from "./Components/NewsFeed";
 const App = () => {
   return(
     <div>
-      {/* <LandingPage/> */}
+      <LandingPage/>
       {/* <Dashboard/> */}
-      <NewsFeed/>
+      {/* <NewsFeed/> */}
       
 
     </div>
