@@ -10,6 +10,14 @@ const {
   getLayoffByDate,
   getByLayoffType,
 } = require("./spreadsheet");
+
+const {
+  getLayoffNews,
+  getLayoffNewsByState,
+  getLayoffByCompany,
+} = require("./news");
+
+
 require("dotenv");
 
 app.get("/", async (req, res) => {
@@ -55,6 +63,32 @@ app.get("/type/:type/:page", async (req, res) => {
 
   res.status(200).send(laidoffByTypes);
 });
+
+/// News Routes
+app.get("/news", async (req, res) => {
+  const news = await getLayoffNews();
+  res.status(200).send(news);
+});
+
+app.get("/news/state/:state", async (req, res) => {
+  const { state } = req.params;
+  const news = await getLayoffNewsByState(state);
+  res.status(200).send(news);
+}
+);
+
+app.get("/news/company/:company", async (req, res) => {
+  const { company } = req.params;
+  const news = await getLayoffByCompany(company);
+  res.status(200).send(news);
+}
+);
+
+
+
+
+
+
 
 app.listen(port, () => {
   console.log(`Running on Port: ${port}`);

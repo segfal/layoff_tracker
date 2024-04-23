@@ -1,13 +1,14 @@
 const axios = require('axios');
 const dotenv = require('dotenv').config();
 
-
-const getLayoffNews = async (res) => {
+// Get layoff news
+const getLayoffNews = async () => {
     try {
         const url = `https://newsapi.org/v2/everything?q=layoff&apiKey=${process.env.NEWS_API_KEY}`;
         const response = await axios.get(url);
         const news = response.data.articles;
-        res.json(news);
+        return news;
+        
 
 
     } catch (error) {
@@ -15,29 +16,30 @@ const getLayoffNews = async (res) => {
     }
 }
 
-
-const getLayoffByState = async (res, state) => {
+// Get layoff news by state
+const getLayoffNewsByState = async (state) => {
     try {
         const url = `https://newsapi.org/v2/everything?q=layoff+${state}&apiKey=${process.env.NEWS_API_KEY}`;
         const response = await axios.get(url);
         const news = response.data.articles;
-        res.json(news);
+        return news;
     } catch (error) {
         console.error(error);
     }
 }
 
-const getLayoffByCompany = async (res, company) => {
+// Get layoff news by company
+const getLayoffByCompany = async (company) => {
     try {
         const url = `https://newsapi.org/v2/everything?q=layoff+${company}&apiKey=${process.env.NEWS_API_KEY}`;
         const response = await axios.get(url);
         const news = response.data.articles;
-        res.json(news);
+        return news;
+        
     } catch (error) {
         console.error(error);
     }
 }
-
 
 
 
@@ -45,7 +47,7 @@ const getLayoffByCompany = async (res, company) => {
 
 module.exports = {
     getLayoffNews,
-    getLayoffByState,
+    getLayoffNewsByState,
     getLayoffByCompany
 };
 
