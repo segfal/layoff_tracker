@@ -137,7 +137,7 @@ async function getByLayoffType(page, type) {
       Layoff: true,
       "Mass Layoff - No Recall": true,
     },
-    closing: {
+    closure: {
       "Permanent Closure": true,
       "Closure Permanent": true,
       Closing: true,

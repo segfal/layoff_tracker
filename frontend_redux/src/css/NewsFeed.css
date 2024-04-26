@@ -1,0 +1,48 @@
+/* Preload Rubik font for better performance */
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap");
+
+h2 {
+  font-family: "Rubik", sans-serif;
+  font-weight: 500;
+  font-size: 2rem;
+  color: #f1c40f;
+  text-align: center;
+  margin: 1rem 0;
+}
+
+/* Added a main container inside body for better structuring and to avoid direct flex properties on body/html */
+.main-container {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  background-color: rgb(100, 100, 100);
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.card {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  width: 50%;
+  margin-bottom: 1rem;
+}
+
+.card img {
+  height: 150px;
+  width: 160px;
+  border-radius: 15%;
+  margin-right: 1rem;
+}
+
+.card-content {
+  display: flex;
+  flex-grow: 1;
+  align-items: start;
+  flex-direction: column;
+}
