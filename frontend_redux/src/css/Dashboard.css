@@ -111,3 +111,23 @@ hr {
   border-radius: 5px;
   cursor: pointer;
 }
+
+.dropdown {
+  position: relative;
+}
+.dropdown button {
+  width: 150px;
+  padding: 0.75rem 2rem;
+}
+.dropdown-btn {
+  border: 1px solid black;
+}
+.menu {
+  position: absolute;
+}
+.menu-item button {
+  border: 0;
+}
+.menu-item button:hover {
+  background-color: hsl(217, 4%, 44%);
+}
