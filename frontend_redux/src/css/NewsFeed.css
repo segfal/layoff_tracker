@@ -11,12 +11,12 @@ h2 {
 }
 
 /* Added a main container inside body for better structuring and to avoid direct flex properties on body/html */
-.main-container {
+/* .main-container {
   justify-content: center;
   align-items: center;
   display: flex;
   background-color: rgb(100, 100, 100);
-}
+} */
 
 .container {
   display: flex;

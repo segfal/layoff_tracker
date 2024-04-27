@@ -6,40 +6,39 @@
   padding: 20px auto;
 }
 
-h2 {
+/* h2 {
   font-family: "Rubik", sans-serif;
   font-weight: 500;
   font-size: 2rem;
   color: #f1c40f;
   text-align: center;
   margin: 1rem 0;
-}
+} */
 
 /* Added a main container inside body for better structuring and to avoid direct flex properties on body/html */
-.main-container {
+/* .main-container {
   justify-content: center;
   align-items: center;
   display: flex;
-  /* height: 100vh; This will make the container take the full height of the viewport */
   background-color: rgb(100, 100, 100);
-}
+} */
 
-.container {
+/*.container {
   width: 100%;
   max-width: 1200px;
-  margin: auto; /* Simplified for centering */
+  margin: auto; 
   display: grid;
   grid-template-columns: repeat(
     auto-fill,
     minmax(300px, 1fr)
-  ); /* Added auto-fill to make the cards responsive */
+  ); 
   grid-gap: 100px;
   flex-wrap: wrap;
-  justify-content: center; /* Ensures that cards are centered horizontally */
+  justify-content: center; 
   align-items: center;
-}
+}/*
 
-.card {
+/* .card {
   background-color: #424549;
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -48,26 +47,26 @@ h2 {
   flex-direction: column;
   align-items: center;
   color: aliceblue;
-  margin: 10px; /* Added margin between cards */
-}
+  margin: 10px; 
+} */
 
-.card h1 {
+/* .card h1 {
   font-size: 2rem;
   margin-bottom: 1rem;
-}
+} */
 
-hr {
+/* hr {
   width: 100%;
   border: 1px solid #424549;
   margin: 1rem 0;
-}
+} */
 
-.card p {
+/* .card p {
   font-size: 1.2rem;
   text-align: center;
-}
+} */
 
-.card button {
+/* .card button {
   background-color: #f1c40f;
   color: #424549;
   border: none;
@@ -75,7 +74,7 @@ hr {
   border-radius: 5px;
   cursor: pointer;
   margin-top: 1rem;
-}
+} */
 
 /*make the search bar ontop of the button*/
 
@@ -130,4 +129,39 @@ hr {
 }
 .menu-item button:hover {
   background-color: hsl(217, 4%, 44%);
+}
+/* --------------- DATA ---------------- */
+.dashboard .main-container {
+  width: 80%;
+  margin: 0 auto;
+}
+.layoff-container {
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+.layoff-container h2 {
+  text-align: left;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.layoff-container hr {
+  width: 100%;
+  border: 1px solid #f1c40f;
+  margin: 1rem 0;
+}
+
+.company-layoff-container {
+  color: white;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 5px;
+  border: 1px solid white;
+}
+.company-layoff-container p {
+  display: inline-block;
+  margin: 0 20px;
+}
+.company-layoff-container p span {
+  color: #f1c40f;
 }

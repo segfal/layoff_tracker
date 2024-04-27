@@ -10,7 +10,7 @@ const spreadsheetId = process.env.SPREADSHEET_ID;
 const getSpreadSheet = async (page) => {
   const response = await googleSheets.spreadsheets.values.get({
     spreadsheetId,
-    range: `Sheet1!A${(page - 1) * 500 + 1}:Z${page * 500}`,
+    range: `Sheet1!A${(page - 1) * 50 + 1}:Z${page * 50}`,
   });
 
   return response.data;
@@ -67,7 +67,6 @@ async function getLayoffByState(page = 1, state) {
     for (let i = 0; i < values.length; i++) {
       const record = values[i];
       if (record[0].toLowerCase() == state) {
-        console.log("California");
         stateLayoff.push(record);
       }
     }

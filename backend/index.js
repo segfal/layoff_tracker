@@ -1,4 +1,5 @@
 require("dotenv").config();
+const cors = require("cors");
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 8080;
@@ -11,6 +12,8 @@ const {
   getByLayoffType,
 } = require("./spreadsheet");
 require("dotenv");
+
+app.use(cors());
 
 app.get("/", async (req, res) => {
   const values = await getAllLayoff();
