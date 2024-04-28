@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import FiltersDashboards from "./FiltersDashboards";
 import "../css/Dashboard.css";
 import axios from "axios";
+import Pagination from "./Pagination";
 
 const Dashboard = () => {
   const [data, setData] = useState([]);
@@ -11,15 +12,16 @@ const Dashboard = () => {
   useEffect(() => {
     async function getData() {
       try {
-        const response = await axios.get(`http://localhost:8080/page/${page}`);
+        const response = await axios.get(
+          `${import.meta.env.VITE_BACKEND_URL}/page/${page}`
+        );
         setData(response.data);
-        console.log(response.data);
       } catch (error) {
         console.log(error);
       }
     }
     getData();
-  }, []);
+  }, [page]);
 
   //data for testing
   // const data = [
@@ -63,7 +65,7 @@ const Dashboard = () => {
     <div className="dashboard">
       <FiltersDashboards />
       <h2>Recent Layoffs</h2>
-
+      <Pagination currentPage={page} setPage={setPage} />
       {/*
         Everything inside the div with the class name "main-container" will be the main content of the dashboard.
         This is where you will put all the cards, tables, graphs, etc.

@@ -48,7 +48,7 @@ async function getTotalRecordCountSpreadSheet() {
 
     let totalCount = response.data.sheets[0].properties.gridProperties.rowCount;
 
-    const pageSize = 500;
+    const pageSize = 50;
 
     return parseInt(totalCount / pageSize);
   } catch (error) {
