@@ -1,12 +1,26 @@
 import "./LandingPage.css";
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 import Button from "@mui/material/Button";
-import dash_image from "../assets/dashboard.png";
+import dash_image from "../assets/img/dashboard.png";
 import Header from "./Header";
-import vid1 from "../assets/layoffVid2.mp4";
-import vid2 from "../assets/layoffVid3.mp4";
+import vid1 from "../assets/img/layoffVid2.mp4";
+import vid2 from "../assets/img/layoffVid3.mp4";
+import curved_arrow from "../assets/img/curved-arrow.svg";
+import layoffImg from "../assets/img/layoffImg1.png";
 
-import layoffImg from '../assets/layoffImg1.png'
+const buttonStyle = {
+  cursor: "pointer",
+  padding: "10px 20px",
+  border: "none",
+  borderRadius: "5px",
+  backgroundColor: "#000", // Adjust the button background color to match your design
+  color: "#fff", // Adjust the button text color to match your design
+  // Add more styles for your button if needed
+  position: "absolute", // Position the button absolutely relative to its nearest positioned ancestor
+  bottom: "-15px", // Adjust as necessary to move the button above the arrow
+  right: "260px", // Adjust as necessary to align with the arrow head
+  transform: "translateY(-100%)",
+};
 const LandingPage = () => {
   return (
     <div>
@@ -43,19 +57,44 @@ const LandingPage = () => {
                   color: "#00543B",
                   fontSize: "20px",
                   lineHeight: "1.6",
+                  // marginBottom: "200"
                 }}
               >
                 Layoff and hiring data across industries one click away.
                 Filtering options to provide in-depth analysis.
               </p>
+              <div
+                style={{
+                  flex: 1,
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  alignItems: "center",
+                  position: "relative",
+                }}
+              >
+                <button style={buttonStyle}>Dashboard</button>
+              </div>
 
               <img
                 src={dash_image}
                 alt="Layoff Metrics Dashboard"
                 style={{ maxWidth: "50%", height: "auto" }}
               />
+
+              <img
+                src={curved_arrow}
+                alt="Layoff Metrics Dashboard"
+                style={{
+                  maxWidth: "50%",
+                  height: "auto",
+                  position: "absolute",
+                  transform: "scaleY(-1)",
+                  width: "50px",
+                }}
+              />
               {/* Additional content like buttons can go here */}
             </div>
+            {/* <img src={curved_arrow} alt="" class="home__arrow"/>  */}
           </div>
         </ParallaxLayer>
 
@@ -76,33 +115,33 @@ const LandingPage = () => {
               loop
               muted
               style={{
-                position: 'fixed', // Use fixed to cover the entire viewport
+                position: "fixed", // Use fixed to cover the entire viewport
                 top: 0,
                 left: 0,
-                width: '100vw', // Set width to 100% of the viewport width
-                height: '120vh', // Set height to 100% of the viewport height
-                objectFit: 'cover', // Cover the container without stretching
+                width: "100vw", // Set width to 100% of the viewport width
+                height: "120vh", // Set height to 100% of the viewport height
+                objectFit: "cover", // Cover the container without stretching
                 zIndex: -1, // Send the video to the background
-              }}>
+              }}
+            >
               <source src={vid1} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           </div>
           <div
             style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "flex-start", // Align items to the start of the container along the cross axis
-                justifyContent: "center", // Keeps the vertical alignment at center
-                height: "100vh",
-                color: "black",
-                textAlign: "left", // Aligns text to the left
-                zIndex: 2, // Above the video background
-                paddingLeft: "10%", // Adds padding on the left to offset the text from the very edge
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-start", // Align items to the start of the container along the cross axis
+              justifyContent: "center", // Keeps the vertical alignment at center
+              height: "100vh",
+              color: "black",
+              textAlign: "left", // Aligns text to the left
+              zIndex: 2, // Above the video background
+              paddingLeft: "10%", // Adds padding on the left to offset the text from the very edge
             }}
           >
             {/* <h1>Welcome to Our Technology</h1> */}
-       
           </div>
         </ParallaxLayer>
 
@@ -130,7 +169,7 @@ const LandingPage = () => {
         </ParallaxLayer>
 
         <ParallaxLayer offset={3} speed={0.2} style={{ height: "100vh" }}>
-        <div
+          <div
             style={{
               position: "fixed", // Fixed position to act as a background
               top: 0,
@@ -146,33 +185,33 @@ const LandingPage = () => {
               loop
               muted
               style={{
-                position: 'fixed', // Use fixed to cover the entire viewport
+                position: "fixed", // Use fixed to cover the entire viewport
                 top: 0,
                 left: 0,
-                width: '100vw', // Set width to 100% of the viewport width
-                height: '120vh', // Set height to 100% of the viewport height
-                objectFit: 'cover', // Cover the container without stretching
+                width: "100vw", // Set width to 100% of the viewport width
+                height: "120vh", // Set height to 100% of the viewport height
+                objectFit: "cover", // Cover the container without stretching
                 zIndex: -1, // Send the video to the background
-              }}>
+              }}
+            >
               <source src={vid2} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           </div>
           <div
             style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "flex-start", // Align items to the start of the container along the cross axis
-                justifyContent: "center", // Keeps the vertical alignment at center
-                height: "100vh",
-                color: "black",
-                textAlign: "left", // Aligns text to the left
-                zIndex: 2, // Above the video background
-                paddingLeft: "10%", // Adds padding on the left to offset the text from the very edge
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-start", // Align items to the start of the container along the cross axis
+              justifyContent: "center", // Keeps the vertical alignment at center
+              height: "100vh",
+              color: "black",
+              textAlign: "left", // Aligns text to the left
+              zIndex: 2, // Above the video background
+              paddingLeft: "10%", // Adds padding on the left to offset the text from the very edge
             }}
           >
             {/* <h1>Welcome to Our Technology</h1> */}
-       
           </div>
         </ParallaxLayer>
       </Parallax>

@@ -53,9 +53,9 @@ const Header = () => {
         <a href="/about" style={linkStyle}>About</a>
         <a href="/case-study" style={linkStyle}>Case Study</a>
       </nav>
-      <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end', alignItems: 'center', position: 'relative' }}>
+      {/* <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end', alignItems: 'center', position: 'relative' }}>
         <button style={buttonStyle}>Dashboard</button>
-      </div>
+      </div> */}
     </header>
   );
 };
