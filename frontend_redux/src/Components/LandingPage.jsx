@@ -13,12 +13,11 @@ const buttonStyle = {
   padding: "10px 20px",
   border: "none",
   borderRadius: "5px",
-  backgroundColor: "#000", // Adjust the button background color to match your design
-  color: "#fff", // Adjust the button text color to match your design
-  // Add more styles for your button if needed
-  position: "absolute", // Position the button absolutely relative to its nearest positioned ancestor
-  bottom: "-15px", // Adjust as necessary to move the button above the arrow
-  right: "260px", // Adjust as necessary to align with the arrow head
+  backgroundColor: "#00543B",
+  color: "#fff",
+  position: "absolute",
+  bottom: "-15px",
+  right: "260px",
   transform: "translateY(-100%)",
 };
 const LandingPage = () => {
