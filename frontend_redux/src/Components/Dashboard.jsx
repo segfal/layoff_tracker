@@ -13,7 +13,7 @@ const Dashboard = () => {
     async function getData() {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/page/${page}`
+          `${import.meta.env.VITE_BACKEND_URL}/${page}`
         );
         setData(response.data);
       } catch (error) {
@@ -63,7 +63,12 @@ const Dashboard = () => {
   // ];
   return (
     <div className="dashboard">
-      <FiltersDashboards />
+      <FiltersDashboards
+        setPage={setPage}
+        page={page}
+        setFiltersApplied={setFiltersApplied}
+        setData={setData}
+      />
       <h2>Recent Layoffs</h2>
       <Pagination setPage={setPage} currentPage={page} />
       {/*
@@ -102,7 +107,30 @@ const Dashboard = () => {
             );
           })
         ) : (
-          <></>
+          <div className="layoff-container">
+            {data.map((company) => {
+              return (
+                <div className="company-layoff-container" key={company[1]}>
+                  <h2 className="company-name">{company[1]}</h2>
+                  <p className="">
+                    State: <span>{company[0]}</span>
+                  </p>
+                  <p className="">
+                    Layoff Count: <span>{company[3]}</span>
+                  </p>
+                  <p className="">
+                    WARN notice Date: <span>{company[4]}</span>
+                  </p>
+                  <p className="">
+                    Effective Date: <span>{company[5]}</span>
+                  </p>
+                  <p className="">
+                    Type: <span>{company[6]}</span>
+                  </p>
+                </div>
+              );
+            })}
+          </div>
         )}
       </div>
     </div>

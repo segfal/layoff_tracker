@@ -58,7 +58,7 @@ async function getTotalRecordCountSpreadSheet() {
 
 async function getLayoffByState(page = 1, state) {
   try {
-    state = state.toLowerCase(); // Capitalizing values
+    state = state.toLowerCase();
 
     const spreadsheet = await getSpreadSheet(page);
 

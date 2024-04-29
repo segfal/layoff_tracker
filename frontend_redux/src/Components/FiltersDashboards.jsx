@@ -1,6 +1,7 @@
 import { React, useState } from "react";
+import axios from "axios";
 
-const FiltersDashboards = () => {
+const FiltersDashboards = ({ page, setPage, setFiltersApplied, setData }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [dropdownOption, setDropdownOption] = useState("");
 
@@ -11,6 +12,19 @@ const FiltersDashboards = () => {
 
   async function searchByState(event) {
     event.preventDefault();
+    try {
+      const state = document
+        .getElementById("searchBar")
+        .value.replace(/\s+/g, "-");
+      const response = await axios.get(
+        `${import.meta.env.VITE_BACKEND_URL}/state/${state}/7`
+      );
+      setData(response.data);
+      setPage(1);
+      setFiltersApplied(true);
+    } catch (error) {
+      console.log(error);
+    }
     event.target.reset();
   }
 
@@ -35,7 +49,7 @@ const FiltersDashboards = () => {
         ) : null}
       </div>
       <form className="search-bar" onSubmit={searchByState}>
-        <input type="text" placeholder="Enter a state" />
+        <input type="text" placeholder="Enter a state" id="searchBar" />
         <button type="submit">Search</button>
       </form>
     </div>

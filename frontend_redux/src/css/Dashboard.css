@@ -139,7 +139,8 @@
   padding: 10px 20px;
   border-radius: 10px;
 }
-.layoff-container h2 {
+.layoff-container h2,
+.company-name {
   text-align: left;
   text-overflow: ellipsis;
   overflow: hidden;
