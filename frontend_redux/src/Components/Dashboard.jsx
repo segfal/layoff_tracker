@@ -65,7 +65,7 @@ const Dashboard = () => {
     <div className="dashboard">
       <FiltersDashboards />
       <h2>Recent Layoffs</h2>
-      <Pagination currentPage={page} setPage={setPage} />
+      <Pagination setPage={setPage} currentPage={page} />
       {/*
         Everything inside the div with the class name "main-container" will be the main content of the dashboard.
         This is where you will put all the cards, tables, graphs, etc.

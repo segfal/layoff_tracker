@@ -3,8 +3,9 @@ import axios from "axios";
 import "../css/Pagination.css";
 
 const Pagination = ({ setPage, currentPage }) => {
-  let [pagination, setPagination] = useState([]);
+  const [pagination, setPagination] = useState([]);
   const [pageCount, setPageCount] = useState(0);
+
   useEffect(() => {
     async function getPages() {
       try {
@@ -12,15 +13,7 @@ const Pagination = ({ setPage, currentPage }) => {
           `${import.meta.env.VITE_BACKEND_URL}/record-count`
         );
         setPageCount(response.data);
-        let pages = [];
-        for (let i = 1; i <= response.data; i++) {
-          if (i > 8) {
-            break;
-          }
-          pages.push(i);
-        }
-        setPagination(pages);
-        console.log(pagination);
+        generatePagination(response.data, currentPage);
       } catch (error) {
         console.log(error);
       }
@@ -28,28 +21,62 @@ const Pagination = ({ setPage, currentPage }) => {
     getPages();
   }, []);
 
-  function updatePagination(page) {
-    if (page == currentPage - 1 && !(page > pageCount && page < 0)) {
-      pagination.unshift(pagination[0] - 1);
-      setPage(page);
-    } else if (page == currentPage + 1 && !(page > pageCount)) {
-      pagination.shift();
-      let last = pagination[pagination.length - 1];
-      pagination.push(last + 1);
-      setPage(page);
+  useEffect(() => {
+    generatePagination(pageCount, currentPage);
+  }, [currentPage, pageCount]);
+
+  const generatePagination = (totalPages, currentPage) => {
+    let pages = [];
+    const visiblePages = 8;
+    const halfVisiblePages = Math.floor(visiblePages / 2);
+    let startPage = Math.max(1, currentPage - halfVisiblePages);
+    let endPage = Math.min(totalPages, startPage + visiblePages - 1);
+
+    if (endPage - startPage + 1 < visiblePages) {
+      startPage = Math.max(1, endPage - visiblePages + 1);
     }
-  }
+
+    if (currentPage > halfVisiblePages) {
+      pages.push(1);
+      if (startPage > 2) {
+        pages.push("...");
+      }
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+      pages.push(i);
+    }
+
+    if (currentPage < totalPages - halfVisiblePages) {
+      if (endPage < totalPages - 1) {
+        pages.push("...");
+      }
+      pages.push(totalPages);
+    }
+
+    setPagination(pages);
+  };
+
+  const updatePagination = (page) => {
+    setPage(page);
+  };
 
   return (
     <div className="pagination-container">
-      {pagination.map((number) => {
+      {pagination.map((item, index) => {
         return (
           <button
-            key={number}
-            onClick={() => updatePagination(number)}
-            className={`page-btn ${currentPage == number ? "active" : ""}`}
+            key={index}
+            onClick={() => {
+              if (typeof item === "number") {
+                updatePagination(item);
+              }
+            }}
+            className={`page-btn ${currentPage === item ? "active" : ""} ${
+              typeof item === "number" ? "" : "disabled"
+            }`}
           >
-            {number}
+            {item}
           </button>
         );
       })}
