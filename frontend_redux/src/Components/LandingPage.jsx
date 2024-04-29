@@ -8,6 +8,7 @@ import vid2 from "../assets/img/layoffVid3.mp4";
 import curved_arrow from "../assets/img/curved-arrow.svg";
 import layoffImg from "../assets/img/layoffImg1.png";
 
+
 const buttonStyle = {
   cursor: "pointer",
   padding: "10px 20px",
@@ -19,6 +20,14 @@ const buttonStyle = {
   bottom: "-15px",
   right: "260px",
   transform: "translateY(-100%)",
+};
+
+const textStyle = {
+  position: "absolute",
+  bottom: "100px",
+  left: "80%",
+  transform: "translateX(-70%)",
+  color: "white",
 };
 const LandingPage = () => {
   return (
@@ -97,7 +106,31 @@ const LandingPage = () => {
           </div>
         </ParallaxLayer>
 
-        <ParallaxLayer offset={1} speed={0.2} style={{ height: "100vh" }}>
+        <ParallaxLayer
+          offset={1}
+          speed={0.2}
+          style={{ height: "100vh" }}
+          factor={2}
+        >
+          <div
+            style={{
+              position: "relative",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              height: "120vh", // Consistent with the height of the previous layer
+              color: "white",
+              backgroundImage: `url(${layoffImg})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }}
+          >
+            <h1 style={textStyle}>Stay Ahead Of The Game!</h1>
+          </div>
+        </ParallaxLayer>
+
+        <ParallaxLayer offset={2} speed={0.2} style={{ height: "100vh" }}>
           <div
             style={{
               position: "fixed", // Fixed position to act as a background
@@ -141,29 +174,6 @@ const LandingPage = () => {
             }}
           >
             {/* <h1>Welcome to Our Technology</h1> */}
-          </div>
-        </ParallaxLayer>
-
-        <ParallaxLayer
-          offset={2}
-          speed={0.2}
-          style={{ height: "100vh" }}
-          factor={2}
-        >
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              height: "120vh", // Consistent with the height of the previous layer
-              color: "white",
-              backgroundImage: `url(${layoffImg})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-            }}
-          >
-            <h1>Innovating for Tomorrow</h1>
           </div>
         </ParallaxLayer>
 
