@@ -8,7 +8,6 @@ import vid2 from "../assets/img/layoffVid3.mp4";
 import curved_arrow from "../assets/img/curved-arrow.svg";
 import layoffImg from "../assets/img/layoffImg1.png";
 
-
 const buttonStyle = {
   cursor: "pointer",
   padding: "10px 20px",
@@ -27,6 +26,14 @@ const textStyle = {
   bottom: "100px",
   left: "80%",
   transform: "translateX(-70%)",
+  color: "white",
+};
+
+const textStyle2 = {
+  position: "absolute",
+  top: "50px",
+  right: "78%",
+  transform: "translateX(20%)",
   color: "white",
 };
 const LandingPage = () => {
@@ -126,6 +133,7 @@ const LandingPage = () => {
               backgroundRepeat: "no-repeat",
             }}
           >
+            <h1 style={textStyle2}>Recently Laid Off?</h1>
             <h1 style={textStyle}>Stay Ahead Of The Game!</h1>
           </div>
         </ParallaxLayer>
@@ -173,7 +181,13 @@ const LandingPage = () => {
               paddingLeft: "10%", // Adds padding on the left to offset the text from the very edge
             }}
           >
-            {/* <h1>Welcome to Our Technology</h1> */}
+            {" "}
+            <h1 style={textStyle2}>Layoffs Can be Hard.</h1>
+            <h2 style={textStyle}>
+              {" "}
+              But, with our app, make it easy for yourself to see whats
+              happening and remain a step ahead.
+            </h2>
           </div>
         </ParallaxLayer>
 
