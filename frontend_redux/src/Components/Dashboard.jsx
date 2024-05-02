@@ -11,17 +11,20 @@ const Dashboard = () => {
 
   useEffect(() => {
     async function getData() {
-      try {
-        const response = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/${page}`
-        );
-        setData(response.data);
-      } catch (error) {
-        console.log(error);
+      if (!filtersApplied) {
+        try {
+          const response = await axios.get(
+            `${import.meta.env.VITE_BACKEND_URL}/${page}`
+          );
+          setData(response.data);
+          console.log(response.data);
+        } catch (error) {
+          console.log(error);
+        }
       }
     }
     getData();
-  }, [page]);
+  }, [page, filtersApplied]);
 
   //data for testing
   // const data = [
@@ -68,6 +71,8 @@ const Dashboard = () => {
         page={page}
         setFiltersApplied={setFiltersApplied}
         setData={setData}
+        filtersApplied={filtersApplied}
+        data={data}
       />
       <h2>Recent Layoffs</h2>
       <Pagination setPage={setPage} currentPage={page} />
@@ -77,14 +82,17 @@ const Dashboard = () => {
         */}
       <div className="main-container">
         {data && !filtersApplied ? (
-          Object.entries(data).map((company) => {
+          Object.entries(data).map((company, index) => {
             return (
-              <div key={company[1]} className="layoff-container">
+              <div key={index} className="layoff-container">
                 <h2>{company[0]}</h2>
                 <hr />
-                {company[1].map((info) => {
+                {company[1].map((info, jIndex) => {
                   return (
-                    <div className="company-layoff-container" key={info}>
+                    <div
+                      className="company-layoff-container"
+                      key={info + jIndex}
+                    >
                       <p className="">
                         State: <span>{info[0]}</span>
                       </p>
@@ -108,9 +116,12 @@ const Dashboard = () => {
           })
         ) : (
           <div className="layoff-container">
-            {data.map((company) => {
+            {data.map((company, index) => {
               return (
-                <div className="company-layoff-container" key={company[1]}>
+                <div
+                  className="company-layoff-container"
+                  key={company[1] + `${index}`}
+                >
                   <h2 className="company-name">{company[1]}</h2>
                   <p className="">
                     State: <span>{company[0]}</span>

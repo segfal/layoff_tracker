@@ -1,9 +1,17 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import axios from "axios";
 
-const FiltersDashboards = ({ page, setPage, setFiltersApplied, setData }) => {
+const FiltersDashboards = ({
+  page,
+  setPage,
+  setFiltersApplied,
+  setData,
+  filtersApplied,
+  data,
+}) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [dropdownOption, setDropdownOption] = useState("");
+  const [state, setState] = useState("");
 
   function handleDropdown(event) {
     setDropdownOpen(!dropdownOpen);
@@ -13,11 +21,12 @@ const FiltersDashboards = ({ page, setPage, setFiltersApplied, setData }) => {
   async function searchByState(event) {
     event.preventDefault();
     try {
-      const state = document
+      const currentState = document
         .getElementById("searchBar")
         .value.replace(/\s+/g, "-");
+      setState(currentState);
       const response = await axios.get(
-        `${import.meta.env.VITE_BACKEND_URL}/state/${state}/7`
+        `${import.meta.env.VITE_BACKEND_URL}/state/${currentState}/1`
       );
       setData(response.data);
       setPage(1);
@@ -25,8 +34,30 @@ const FiltersDashboards = ({ page, setPage, setFiltersApplied, setData }) => {
     } catch (error) {
       console.log(error);
     }
-    event.target.reset();
   }
+
+  async function resetData() {
+    document.querySelector(".search-bar").reset();
+    setState("");
+    setFiltersApplied(false);
+    setPage(1);
+  }
+
+  useEffect(() => {
+    async function getStateByPage() {
+      if (state) {
+        try {
+          const response = await axios.get(
+            `${import.meta.env.VITE_BACKEND_URL}/state/${state}/${page}`
+          );
+          setData(response.data);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    }
+    getStateByPage();
+  }, [page]);
 
   return (
     <div className="filters-dashboard">
@@ -49,8 +80,16 @@ const FiltersDashboards = ({ page, setPage, setFiltersApplied, setData }) => {
         ) : null}
       </div>
       <form className="search-bar" onSubmit={searchByState}>
-        <input type="text" placeholder="Enter a state" id="searchBar" />
+        <input
+          type="text"
+          placeholder="Enter a state"
+          id="searchBar"
+          required
+        />
         <button type="submit">Search</button>
+        <button type="button" className="reset-btn" onClick={resetData}>
+          Reset
+        </button>
       </form>
     </div>
   );
