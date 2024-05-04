@@ -39,11 +39,11 @@ const textStyle2 = {
   color: "white",
 };
 const LandingPage = () => {
-  // const navigate = useNavigate()
-  // const onClick = function(){
-  //   navigate("./Components/NewsFeed")
+  const navigate = useNavigate()
+  const onClick = function(){
+    navigate("/dashboard")
 
-  // }
+  }
   return (
     <div>
       <Parallax pages={4}>
@@ -94,7 +94,7 @@ const LandingPage = () => {
                   position: "relative",
                 }}
               >
-                <button style={buttonStyle}>Dashboard</button>
+                <button style={buttonStyle} onClick={onClick}>Dashboard</button>
               </div>
 
               <img
