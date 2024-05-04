@@ -8,6 +8,7 @@ import vid1 from "../assets/img/layoffVid2.mp4";
 import vid2 from "../assets/img/layoffVid3.mp4";
 import curved_arrow from "../assets/img/curved-arrow.svg";
 import layoffImg from "../assets/img/layoffImg1.png";
+import { useNavigate } from "react-router-dom";
 
 const buttonStyle = {
   cursor: "pointer",
@@ -38,6 +39,11 @@ const textStyle2 = {
   color: "white",
 };
 const LandingPage = () => {
+  // const navigate = useNavigate()
+  // const onClick = function(){
+  //   navigate("./Components/NewsFeed")
+
+  // }
   return (
     <div>
       <Parallax pages={4}>
