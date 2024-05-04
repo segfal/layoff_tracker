@@ -6,6 +6,8 @@ import Pagination from "./Pagination";
 
 const Dashboard = () => {
   const [data, setData] = useState([]);
+  const [filterData, setFilterData] = useState([]);
+
   const [filtersApplied, setFiltersApplied] = useState(false);
   const [page, setPage] = useState(1);
 
@@ -17,7 +19,6 @@ const Dashboard = () => {
             `${import.meta.env.VITE_BACKEND_URL}/${page}`
           );
           setData(response.data);
-          console.log(response.data);
         } catch (error) {
           console.log(error);
         }
@@ -73,6 +74,7 @@ const Dashboard = () => {
         setData={setData}
         filtersApplied={filtersApplied}
         data={data}
+        setFilterData={setFilterData}
       />
       <h2>Recent Layoffs</h2>
       <Pagination setPage={setPage} currentPage={page} />
@@ -116,7 +118,7 @@ const Dashboard = () => {
           })
         ) : (
           <div className="layoff-container">
-            {data.map((company, index) => {
+            {filterData.map((company, index) => {
               return (
                 <div
                   className="company-layoff-container"

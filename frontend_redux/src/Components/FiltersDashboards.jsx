@@ -1,5 +1,29 @@
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect, useRef } from "react";
 import axios from "axios";
+
+const types = {
+  layoff: {
+    "Layoff Permanent": true,
+    "Permanent Layoff": true,
+    "Layoff Temporary": true,
+    "Permanent Layoff /Reduction in Force": true,
+    Layoff: true,
+    "Mass Layoff - No Recall": true,
+  },
+  closure: {
+    "Permanent Closure": true,
+    "Closure Permanent": true,
+    Closing: true,
+    "Plant Closure": true,
+    "Facility closure": true,
+    "Facility Closure, Workforce Reduction": true,
+  },
+  reduction: {
+    "Workforce Reduction": true,
+    "Permanent Layoff /Reduction in Force": true,
+    "Facility Closure, Workforce Reduction": true,
+  },
+};
 
 const FiltersDashboards = ({
   page,
@@ -8,6 +32,7 @@ const FiltersDashboards = ({
   setData,
   filtersApplied,
   data,
+  setFilterData,
 }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [dropdownOption, setDropdownOption] = useState("");
@@ -16,6 +41,7 @@ const FiltersDashboards = ({
   function handleDropdown(event) {
     setDropdownOpen(!dropdownOpen);
     setDropdownOption(event.target.textContent);
+    // setFiltersApplied(true);
   }
 
   async function searchByState(event) {
@@ -29,6 +55,7 @@ const FiltersDashboards = ({
         `${import.meta.env.VITE_BACKEND_URL}/state/${currentState}/1`
       );
       setData(response.data);
+      setFilterData(response.data);
       setPage(1);
       setFiltersApplied(true);
     } catch (error) {
@@ -41,6 +68,7 @@ const FiltersDashboards = ({
     setState("");
     setFiltersApplied(false);
     setPage(1);
+    setDropdownOption("");
   }
 
   useEffect(() => {
@@ -58,6 +86,20 @@ const FiltersDashboards = ({
     }
     getStateByPage();
   }, [page]);
+
+  useEffect(() => {
+    if (dropdownOption && dropdownOption !== "Reason") {
+      let filterByTypeData;
+      if (!filtersApplied) {
+        console.log("no filters applied");
+      } else {
+        filterByTypeData = data.filter((company) => {
+          return types[dropdownOption.toLowerCase()][company[6]];
+        });
+      }
+      setFilterData(filterByTypeData);
+    }
+  }, [dropdownOption]);
 
   return (
     <div className="filters-dashboard">
