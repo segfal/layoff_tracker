@@ -1,5 +1,5 @@
 
-import "./LandingPage.css";
+import "../css/LandingPage.css";
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 import Button from "@mui/material/Button";
 import dash_image from "../assets/img/dashboard.png";
