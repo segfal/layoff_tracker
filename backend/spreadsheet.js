@@ -10,7 +10,7 @@ const spreadsheetId = process.env.SPREADSHEET_ID;
 const getSpreadSheet = async (page) => {
   const response = await googleSheets.spreadsheets.values.get({
     spreadsheetId,
-    range: `Sheet1!A${(page - 1) * 500 + 1}:Z${page * 500}`,
+    range: `Sheet1!A${(page - 1) * 50 + 1}:Z${page * 50}`,
   });
 
   return response.data;
@@ -48,7 +48,7 @@ async function getTotalRecordCountSpreadSheet() {
 
     let totalCount = response.data.sheets[0].properties.gridProperties.rowCount;
 
-    const pageSize = 500;
+    const pageSize = 50;
 
     return parseInt(totalCount / pageSize);
   } catch (error) {
@@ -58,7 +58,7 @@ async function getTotalRecordCountSpreadSheet() {
 
 async function getLayoffByState(page = 1, state) {
   try {
-    state = state.toLowerCase(); // Capitalizing values
+    state = state.toLowerCase();
 
     const spreadsheet = await getSpreadSheet(page);
 
@@ -67,7 +67,6 @@ async function getLayoffByState(page = 1, state) {
     for (let i = 0; i < values.length; i++) {
       const record = values[i];
       if (record[0].toLowerCase() == state) {
-        console.log("California");
         stateLayoff.push(record);
       }
     }
@@ -137,7 +136,7 @@ async function getByLayoffType(page, type) {
       Layoff: true,
       "Mass Layoff - No Recall": true,
     },
-    closing: {
+    closure: {
       "Permanent Closure": true,
       "Closure Permanent": true,
       Closing: true,

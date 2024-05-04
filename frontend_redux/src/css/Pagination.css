@@ -1,0 +1,19 @@
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  /* list-style-type: none; */
+}
+.pagination-container .page-btn {
+  height: 40px;
+  width: 40px;
+  border: 1px solid #f1c40f;
+  background-color: transparent;
+  color: #f1c40f;
+}
+.pagination-container .page-btn:hover,
+.pagination-container .page-btn.active {
+  background-color: #f1c40f;
+  color: #424549;
+}

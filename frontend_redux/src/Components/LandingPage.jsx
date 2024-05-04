@@ -1,3 +1,4 @@
+
 import "./LandingPage.css";
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 import Button from "@mui/material/Button";
@@ -115,6 +116,7 @@ const LandingPage = () => {
 
         <ParallaxLayer
           offset={1}
+
           speed={0.2}
           style={{ height: "100vh" }}
           factor={2}
@@ -235,11 +237,14 @@ const LandingPage = () => {
             }}
           >
             {/* <h1>Welcome to Our Technology</h1> */}
+
           </div>
         </ParallaxLayer>
       </Parallax>
     </div>
   );
 };
+
+
 
 export default LandingPage;
