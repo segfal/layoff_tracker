@@ -7,9 +7,13 @@ import "./App.css";
 const App = () => {
   return (
     <div>
-      {/* <LandingPage/> */}
-      <Dashboard />
-      {/* <NewsFeed /> */}
+
+      <LandingPage/>
+      {/* <Dashboard/> */}
+      {/* <NewsFeed/> */}
+      
+
+
     </div>
   );
 };
