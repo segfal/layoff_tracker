@@ -1,9 +1,12 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
+const bodyParser = require("body-parser");
 const port = process.env.PORT || 8080;
 const {authenticateDB} = require('./database/db')
 authenticateDB()
+
+
 
 app.get('/test', (req, res) => {
   console.log("Test endpoint hit");
@@ -12,6 +15,9 @@ app.get('/test', (req, res) => {
 
 app.use('/api',require('./api') )
 
+
 app.listen(port, () => {
   console.log(`Running on Port: ${port}`);
 });
+
+module.exports = app
