@@ -1,6 +1,6 @@
 const router = require("express").Router();
 
-router.use('/states', require('./states_layoffs'))
+router.use('/layoff', require('./states_layoffs'))
 
 
 router.use((req, res, next) => {

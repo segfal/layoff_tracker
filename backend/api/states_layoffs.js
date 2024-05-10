@@ -2,7 +2,7 @@ const router = require("express").Router();
 const { Layoff, sequelize } = require("../database/models");
 
 // route that returns total number of layoffs done per state since jan 2023
-router.get("/", async (req, res) => {
+router.get("/statelayoff", async (req, res) => {
   try {
     console.log("Sending request to DB");
     const states = await Layoff.findAll({
@@ -27,5 +27,7 @@ router.get("/", async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
+
+
 
 module.exports = router;
