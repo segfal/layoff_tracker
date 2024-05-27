@@ -49,6 +49,25 @@ router.get("/company_layoff", async (req,res) => {
   }
 })
 
+// returns the number of layoffs done when given a companys name by the end user.
+router.get("/:company", async (req,res) => {
+  try {
+    const {company} = req.params
+    const query = await Layoff.findAll({
+      where: { company: company },
+      attributes: [
+        [Layoff.sequelize.literal('SUM("number_of_workers")'), "total_workers"],
+      ],
+    })
+    console.log(query[0].dataValues.total_workers)
+    res.json(`Number of workers laid off by ${company}: ` + query[0].dataValues.total_workers)
+
+  } catch (error) {
+    console.log(error)
+    res.sendStatus(500)
+  }
+})
+
 
 
 module.exports = router;
