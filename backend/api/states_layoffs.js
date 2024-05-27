@@ -28,6 +28,27 @@ router.get("/statelayoff", async (req, res) => {
   }
 });
 
+router.get("/company_layoff", async (req,res) => {
+  try {
+    const companies = await Layoff.findAll({
+      attributes: [
+        "company",
+        [Layoff.sequelize.literal('SUM("number_of_workers")'), "total_workers"],
+      ],
+        group: ["company"],
+        order: [["company", "ASC"]],
+    })
+    console.log("Query completed:", companies);
+    res.json(companies)
+    res.sendStatus(200)
+    
+  } catch (error) {
+    console.log(error)
+    res.sendStatus(500)
+    
+  }
+})
+
 
 
 module.exports = router;
