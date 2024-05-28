@@ -50,7 +50,7 @@ router.get("/company_layoff", async (req,res) => {
     // calculates the total number of pages that are used to store all of the data.
     // 50 items per page is fixed by the backend.
     // note: sending the value to the frontend, so that they know how many times they need to call the endpoint with the page numbers.
-    const totalPages = Math.ceil(count / pageSize);
+    const totalPages = Math.ceil(count.length / pageSize);
     res.json({
       data: rows,
       pageInfo: {
