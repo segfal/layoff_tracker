@@ -55,7 +55,7 @@ router.get("/company_layoff", async (req,res) => {
       data: rows,
       pageInfo: {
           page,
-          pageSize,
+          itemsPerPage: pageSize,
           totalItems: count.length,
           totalPages
       }
