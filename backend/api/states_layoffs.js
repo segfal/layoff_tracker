@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const { Layoff, sequelize } = require("../database/models");
+const pageSize = 50; // returns 50 items per page.
 
 // route that returns total number of layoffs done per state since jan 2023
 router.get("/statelayoff", async (req, res) => {
@@ -30,8 +31,15 @@ router.get("/statelayoff", async (req, res) => {
 });
 
 router.get("/company_layoff", async (req,res) => {
+  // the page number is going to be provided by the user as a query value to the api endpoint.
+  // if not provided, page is set to 1
+  const page = parseInt(req.query.page) || 1
+  const offset = (page - 1) * pageSize;
   try {
-    const companies = await Layoff.findAll({
+    // implementing 'page-based pagination'. 
+    const {count, rows} = await Layoff.findAndCountAll({
+      limit: pageSize, // passing in the limit of the # of items we want to retrieve from the database.
+      offset: offset,
       attributes: [
         "company",
         [Layoff.sequelize.literal('SUM("number_of_workers")'), "total_workers"],
@@ -39,11 +47,22 @@ router.get("/company_layoff", async (req,res) => {
         group: ["company"],
         order: [["company", "ASC"]],
     })
-    console.log("Query completed:", companies);
-    res.json(companies)
-    
+    // calculates the total number of pages that are used to store all of the data.
+    // 50 items per page is fixed by the backend.
+    // note: sending the value to the frontend, so that they know how many times they need to call the endpoint with the page numbers.
+    const totalPages = Math.ceil(count / pageSize);
+    res.json({
+      data: rows,
+      pageInfo: {
+          page,
+          pageSize,
+          totalItems: count.length,
+          totalPages
+      }
+      });
   } catch (error) {
     console.log(error)
+    res.send(500)
     
   }
 })
