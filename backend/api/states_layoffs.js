@@ -87,8 +87,13 @@ router.get("/company/:company", async (req,res) => {
 
 // return the type of layoff done by xyx in def state
 router.get("/type", async (req, res) => {
+  const page = req.query.page || 1
+  const offset = (page - 1) * 50
   try {
-    const types = await Layoff.findAll({
+    // returns a count of the rows, and the data being queried.
+    const {count, rows} = await Layoff.findAndCountAll({
+      limit: pageSize,
+      offset: offset,
       attributes: [
         "company",
         "state",
@@ -98,8 +103,16 @@ router.get("/type", async (req, res) => {
       group: ["company", "state", "closure_layoff"],  // Updated to include all non-aggregated fields
       order: [["company", "ASC"]],
     })
-    console.log("Query completed:", types);
-    res.json(types);  
+
+    const totalPages = Math.ceil(count.length / pageSize);
+
+    res.json({
+      data: rows,
+      page,
+      itemsPerPage: pageSize,
+      totalItems: count.length,
+      totalPages,
+    });  
   } catch (error) {
     console.log(error)
     res.send(400)
