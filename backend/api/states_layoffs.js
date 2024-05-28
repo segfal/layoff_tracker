@@ -80,7 +80,7 @@ router.get("/type", async (req, res) => {
       order: [["company", "ASC"]],
     })
     console.log("Query completed:", types);
-    res.json(types.map(type => type.get({ plain: true })));  
+    res.json(types);  
   } catch (error) {
     console.log(error)
     res.send(400)
