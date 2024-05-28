@@ -15,6 +15,7 @@ router.get("/statelayoff", async (req, res) => {
     });
     console.log("Query completed:", states);
 
+    
     const statesWithTotalWorkers = states.map((item) => ({
       state: item.state,
       total_workers: item.dataValues.total_workers,
@@ -40,17 +41,15 @@ router.get("/company_layoff", async (req,res) => {
     })
     console.log("Query completed:", companies);
     res.json(companies)
-    res.sendStatus(200)
     
   } catch (error) {
     console.log(error)
-    res.sendStatus(500)
     
   }
 })
 
 // returns the number of layoffs done when given a companys name by the end user.
-router.get("/:company", async (req,res) => {
+router.get("/company/:company", async (req,res) => {
   try {
     const {company} = req.params
     const query = await Layoff.findAll({
@@ -64,10 +63,29 @@ router.get("/:company", async (req,res) => {
 
   } catch (error) {
     console.log(error)
-    res.sendStatus(500)
   }
 })
 
+// return the type of layoff done by xyx in def state
+router.get("/type", async (req, res) => {
+  try {
+    const types = await Layoff.findAll({
+      attributes: [
+        "company",
+        "state",
+        "closure_layoff",
+        [Layoff.sequelize.literal('SUM("number_of_workers")'), "total_workers"],
+      ],
+      group: ["company", "state", "closure_layoff"],  // Updated to include all non-aggregated fields
+      order: [["company", "ASC"]],
+    })
+    console.log("Query completed:", types);
+    res.json(types.map(type => type.get({ plain: true })));  
+  } catch (error) {
+    console.log(error)
+    res.send(400)
+  }
+})
 
 
 module.exports = router;
