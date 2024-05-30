@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const { Layoff, sequelize } = require("../database/models");
+const pageSize = 50; // returns 50 items per page.
 
 // route that returns total number of layoffs done per state since jan 2023
 router.get("/statelayoff", async (req, res) => {
@@ -15,6 +16,7 @@ router.get("/statelayoff", async (req, res) => {
     });
     console.log("Query completed:", states);
 
+    
     const statesWithTotalWorkers = states.map((item) => ({
       state: item.state,
       total_workers: item.dataValues.total_workers,
@@ -29,8 +31,15 @@ router.get("/statelayoff", async (req, res) => {
 });
 
 router.get("/company_layoff", async (req,res) => {
+  // the page number is going to be provided by the user as a query value to the api endpoint.
+  // if not provided, page is set to 1
+  const page = parseInt(req.query.page) || 1
+  const offset = (page - 1) * pageSize;
   try {
-    const companies = await Layoff.findAll({
+    // implementing 'page-based pagination'. 
+    const {count, rows} = await Layoff.findAndCountAll({
+      limit: pageSize, // passing in the limit of the # of items we want to retrieve from the database.
+      offset: offset,
       attributes: [
         "company",
         [Layoff.sequelize.literal('SUM("number_of_workers")'), "total_workers"],
@@ -38,19 +47,28 @@ router.get("/company_layoff", async (req,res) => {
         group: ["company"],
         order: [["company", "ASC"]],
     })
-    console.log("Query completed:", companies);
-    res.json(companies)
-    res.sendStatus(200)
-    
+    // calculates the total number of pages that are used to store all of the data.
+    // 50 items per page is fixed by the backend.
+    // note: sending the value to the frontend, so that they know how many times they need to call the endpoint with the page numbers.
+    const totalPages = Math.ceil(count.length / pageSize);
+    res.json({
+      data: rows,
+      pageInfo: {
+          page,
+          itemsPerPage: pageSize,
+          totalItems: count.length,
+          totalPages
+      }
+      });
   } catch (error) {
     console.log(error)
-    res.sendStatus(500)
+    res.send(500)
     
   }
 })
 
 // returns the number of layoffs done when given a companys name by the end user.
-router.get("/:company", async (req,res) => {
+router.get("/company/:company", async (req,res) => {
   try {
     const {company} = req.params
     const query = await Layoff.findAll({
@@ -64,10 +82,42 @@ router.get("/:company", async (req,res) => {
 
   } catch (error) {
     console.log(error)
-    res.sendStatus(500)
   }
 })
 
+// return the type of layoff done by xyx in def state
+router.get("/type", async (req, res) => {
+  const page = req.query.page || 1
+  const offset = (page - 1) * 50
+  try {
+    // returns a count of the rows, and the data being queried.
+    const {count, rows} = await Layoff.findAndCountAll({
+      limit: pageSize,
+      offset: offset,
+      attributes: [
+        "company",
+        "state",
+        "closure_layoff",
+        [Layoff.sequelize.literal('SUM("number_of_workers")'), "total_workers"],
+      ],
+      group: ["company", "state", "closure_layoff"],  // Updated to include all non-aggregated fields
+      order: [["company", "ASC"]],
+    })
+
+    const totalPages = Math.ceil(count.length / pageSize);
+
+    res.json({
+      data: rows,
+      page,
+      itemsPerPage: pageSize,
+      totalItems: count.length,
+      totalPages,
+    });  
+  } catch (error) {
+    console.log(error)
+    res.send(400)
+  }
+})
 
 
 module.exports = router;
