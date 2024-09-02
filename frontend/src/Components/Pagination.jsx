@@ -5,15 +5,19 @@ import "../css/Pagination.css";
 const Pagination = ({ setPage, currentPage }) => {
   const [pagination, setPagination] = useState([]);
   const [pageCount, setPageCount] = useState(0);
-
+  console.log(`${import.meta.env.VITE_BACKEND_URL}/api/layoff/company_layoff`);
+  
   useEffect(() => {
     async function getPages() {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/record-count`
+          `${import.meta.env.VITE_BACKEND_URL}/api/layoff/company_layoff`
         );
+        const url = `${import.meta.env.VITE_BACKEND_URL}/api/layoff/company_layoff`;
+        console.log(response.data)
         setPageCount(response.data);
         generatePagination(response.data, currentPage);
+        
       } catch (error) {
         console.log(error);
       }
